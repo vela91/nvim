@@ -47,6 +47,9 @@ require('lazy').setup({
     { import = 'plugins.ui.dressing' },
     { import = 'plugins.ui.treesitter-context' },
     { import = 'plugins.util.mini-hipatterns' },
+    { import = 'plugins.coding.oil' },
+    { import = 'plugins.coding.copilot' },
+    { import = 'plugins.util.session' },
   },
   defaults = {},
   performance = {

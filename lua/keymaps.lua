@@ -1,5 +1,8 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+-- Lazy
+vim.keymap.set('n', '<leader>ll', ':Lazy<CR>', { desc = 'Lazy load' })
+vim.keymap.set('n', '<leader>qq', ':qa<CR>', { desc = 'quit neovim' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -45,6 +48,12 @@ keymap.set(
   '<cmd>:bd<cr>',
   { desc = 'Delete Buffer and Window' }
 )
+keymap.set(
+  'n',
+  '<leader>wd',
+  '<cmd>:close<cr>',
+  { desc = 'Close Split Window' }
+)
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -61,3 +70,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Better indenting
 keymap.set('v', '<', '<gv')
 keymap.set('v', '>', '>gv')
+
+-- oil pluging
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
