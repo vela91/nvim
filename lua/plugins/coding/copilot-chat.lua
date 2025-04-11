@@ -1,0 +1,77 @@
+return {
+  --   {
+  --     'CopilotC-Nvim/CopilotChat.nvim',
+  --     dependencies = {
+  --       { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
+  --       { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log, and async functions
+  --     },
+  --     build = 'make tiktoken', -- Only on MacOS or Linux
+  --     opts = {
+  --       inline_chat = true, -- Enable inline chat
+  --       -- See Configuration section for options
+  --     },
+  --     keys = { -- Fixed from "keymaps" to "keys", as Neovim expects this naming convention
+  --       -- Open the chat window
+  --       { '<leader>ao', '<cmd>CopilotChatOpen<CR>', desc = 'Open Chat Window' },
+  --
+  --       -- Close the chat window
+  --       { '<leader>ac', '<cmd>CopilotChatClose<CR>', desc = 'Close Chat Window' },
+  --
+  --       -- Toggle the chat window
+  --       {
+  --         '<leader>aa',
+  --         '<cmd>CopilotChatToggle<CR>',
+  --         desc = 'Toggle Chat Window',
+  --       },
+  --
+  --       -- Stop the current output
+  --       {
+  --         '<leader>as',
+  --         '<cmd>CopilotChatStop<CR>',
+  --         desc = 'Stop Current Output',
+  --       },
+  --       {
+  --         '<leader>ai',
+  --         '<cmd>CopilotChatToggleInline<CR>',
+  --         desc = 'Toggle Inline Chat',
+  --       }, -- Inline chat
+  --       -- Reset the chat window
+  --       { '<leader>ar', '<cmd>CopilotChatReset<CR>', desc = 'Reset Chat Window' },
+  --
+  --       -- Save chat history
+  --       { '<leader>av', '<cmd>CopilotChatSave<CR>', desc = 'Save Chat History' },
+  --
+  --       -- Load chat history
+  --       { '<leader>al', '<cmd>CopilotChatLoad<CR>', desc = 'Load Chat History' },
+  --
+  --       -- View and select prompt templates
+  --       {
+  --         '<leader>ap',
+  --         '<cmd>CopilotChatPrompts<CR>',
+  --         desc = 'View/Select Prompt Templates',
+  --       },
+  --
+  --       -- View and select available models
+  --       {
+  --         '<leader>am',
+  --         '<cmd>CopilotChatModels<CR>',
+  --         desc = 'View/Select Available Models',
+  --       },
+  --
+  --       -- View and select available agents
+  --       {
+  --         '<leader>ag',
+  --         '<cmd>CopilotChatAgents<CR>',
+  --         desc = 'View/Select Available Agents',
+  --       },
+  --
+  --       -- Use a specific prompt template
+  --       {
+  --         '<leader>aP',
+  --         '<cmd>CopilotChatPromptTemplate<CR>',
+  --         desc = 'Use Specific Prompt Template',
+  --       },
+  --     },
+  --     -- See Commands section for default commands if you want to lazy load on them
+  --   },
+}

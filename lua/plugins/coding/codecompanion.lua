@@ -1,3 +1,4 @@
+-- Define a prefix for leader-based keymaps
 local prefix = '<leader>a'
 
 return {
@@ -15,49 +16,54 @@ return {
       'CodeCompanionChat',
     },
     keys = {
+      -- Action Palette
       {
         prefix .. 'a',
-        '<cmd>CodeCompanionActions<cr>',
+        '<cmd>CodeCompanionActions<CR>',
         mode = { 'n', 'v' },
         desc = 'Action Palette',
       },
+      -- Start a New Chat
       {
         prefix .. 'c',
-        '<cmd>CodeCompanionChat<cr>',
+        '<cmd>CodeCompanionChat<CR>',
         mode = { 'n', 'v' },
         desc = 'New Chat',
       },
+      -- Add Code (visual mode only)
       {
         prefix .. 'A',
-        '<cmd>CodeCompanionAdd<cr>',
+        '<cmd>CodeCompanionAdd<CR>',
         mode = 'v',
         desc = 'Add Code',
       },
+      -- Inline Prompt
       {
         prefix .. 'i',
-        '<cmd>CodeCompanion<cr>',
+        '<cmd>CodeCompanion<CR>',
         mode = 'n',
         desc = 'Inline Prompt',
       },
+      -- Toggle Chat
       {
         prefix .. 'C',
-        '<cmd>CodeCompanionToggle<cr>',
+        '<cmd>CodeCompanionToggle<CR>',
         mode = 'n',
         desc = 'Toggle Chat',
       },
     },
     opts = {
+      -- Define strategies for chat and inline prompts
       strategies = {
         chat = {
-          adapter = 'copilot',
+          adapter = 'copilot', -- Use Copilot as the backend for chat
         },
         inline = {
-          adapter = 'copilot',
+          adapter = 'copilot', -- Use Copilot for inline prompts
         },
       },
-      opts = {
-        log_level = 'DEBUG',
-      },
+      -- Additional options
+      log_level = 'DEBUG', -- Set log level to DEBUG for detailed output
     },
   },
 }

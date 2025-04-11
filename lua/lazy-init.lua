@@ -50,6 +50,7 @@ require('lazy').setup({
     { import = 'plugins.coding.oil' },
     { import = 'plugins.coding.copilot' },
     { import = 'plugins.util.session' },
+    -- { import = 'plugins.coding.copilot-chat' },
   },
   defaults = {},
   performance = {
