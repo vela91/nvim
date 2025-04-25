@@ -31,6 +31,7 @@ require('lazy').setup({
     { import = 'plugins.editor.snacks' },
     { import = 'plugins.editor.tmux' },
     { import = 'plugins.editor.which-key' },
+    { import = 'plugins.editor.smear-cursor' },
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
     { import = 'plugins.languages.astro' },
