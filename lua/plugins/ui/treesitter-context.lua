@@ -1,11 +1,11 @@
 -- Show context of the current function
 return {
-  "nvim-treesitter/nvim-treesitter-context",
-  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  'nvim-treesitter/nvim-treesitter-context',
+  event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
   opts = function()
-    local tsc = require("treesitter-context")
+    local tsc = require 'treesitter-context'
     Snacks.toggle({
-      name = "Treesitter Context",
+      name = 'Treesitter Context',
       get = tsc.enabled,
       set = function(state)
         if state then
@@ -14,7 +14,7 @@ return {
           tsc.disable()
         end
       end,
-    }):map("<leader>ut")
-    return { mode = "cursor", max_lines = 3 }
+    }):map '<leader>ut'
+    return { mode = 'cursor', max_lines = 3 }
   end,
 }

@@ -15,6 +15,12 @@ keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
 keymap.set('n', 'ss', ':vsplit<Return>', opts)
 keymap.set('n', 'sv', ':split<Return>', opts)
 
+-- Window navigation
+keymap.set('n', '<C-h>', '<C-w>h', opts)
+keymap.set('n', '<C-j>', '<C-w>j', opts)
+keymap.set('n', '<C-k>', '<C-w>k', opts)
+keymap.set('n', '<C-l>', '<C-w>l', opts)
+
 -- Tabs
 keymap.set('n', 'te', ':tabedit', opts)
 keymap.set('n', '<tab>', ':tabnext<Return>', opts)
