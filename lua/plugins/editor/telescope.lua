@@ -6,7 +6,16 @@ return {
       file_ignore_patterns = {
         'node_modules',
         '%.git/',
-        '^%.', -- cualquier archivo oculto
+        '^%.', -- archivos ocultos (que empiezan con punto)
+      },
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
       },
     },
     pickers = {

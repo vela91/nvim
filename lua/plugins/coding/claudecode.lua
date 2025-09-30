@@ -1,37 +1,23 @@
 return {
-  'coder/claudecode.nvim',
-  dependencies = { 'folke/snacks.nvim' },
-  config = true,
+  'greggh/claude-code.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'MunifTanjim/nui.nvim',
+  },
+  opts = {
+    window = {
+      position = 'vertical', -- 'botright' (horizontal), 'vertical', 'topleft', 'float'
+      split_ratio = 0.4,     -- porcentaje de pantalla (0.4 = 40%)
+    },
+    keymaps = {
+      window_navigation = true, -- Enable <C-h/j/k/l> navigation
+    },
+    welcome_message = true,
+    use_prompt = true,
+  },
   keys = {
-    { '<leader>a', nil, desc = 'AI/Claude Code' },
-    { '<leader>ac', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
-    { '<leader>af', '<cmd>ClaudeCodeFocus<cr>', desc = 'Focus Claude' },
-    { '<leader>ar', '<cmd>ClaudeCode --resume<cr>', desc = 'Resume Claude' },
-    {
-      '<leader>aC',
-      '<cmd>ClaudeCode --continue<cr>',
-      desc = 'Continue Claude',
-    },
-    {
-      '<leader>am',
-      '<cmd>ClaudeCodeSelectModel<cr>',
-      desc = 'Select Claude model',
-    },
-    { '<leader>ab', '<cmd>ClaudeCodeAdd %<cr>', desc = 'Add current buffer' },
-    {
-      '<leader>as',
-      '<cmd>ClaudeCodeSend<cr>',
-      mode = 'v',
-      desc = 'Send to Claude',
-    },
-    {
-      '<leader>as',
-      '<cmd>ClaudeCodeTreeAdd<cr>',
-      desc = 'Add file',
-      ft = { 'NvimTree', 'neo-tree', 'oil', 'minifiles' },
-    },
-    -- Diff management
-    { '<leader>aa', '<cmd>ClaudeCodeDiffAccept<cr>', desc = 'Accept diff' },
-    { '<leader>ad', '<cmd>ClaudeCodeDiffDeny<cr>', desc = 'Deny diff' },
+    { '<leader>a',  nil,                       desc = 'AI/Claude' },
+    { '<leader>aa', '<cmd>ClaudeCode<cr>',     desc = 'Toggle Claude Code' },
+    { '<leader>aq', '<cmd>ClaudeCodeQuit<cr>', desc = 'Quit Claude Code' },
   },
 }

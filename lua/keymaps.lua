@@ -21,6 +21,12 @@ keymap.set('n', '<C-j>', '<C-w>j', opts)
 keymap.set('n', '<C-k>', '<C-w>k', opts)
 keymap.set('n', '<C-l>', '<C-w>l', opts)
 
+-- Terminal mode window navigation
+keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+
 -- Tabs
 keymap.set('n', 'te', ':tabedit', opts)
 keymap.set('n', '<tab>', ':tabnext<Return>', opts)
@@ -79,3 +85,7 @@ keymap.set('v', '>', '>gv')
 
 -- oil pluging
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+
+-- ClaudeCode Diff View
+vim.keymap.set('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'Git Diff View' })
+vim.keymap.set('n', '<leader>gD', '<cmd>diffoff!<cr>', { desc = 'Close Diff View' })

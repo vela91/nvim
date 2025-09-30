@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude AI when working with code in this repository.
 
 ## Overview
 
@@ -10,7 +10,7 @@ This is a Neovim configuration using the Lazy.nvim plugin manager. The configura
 
 ### Core Structure
 - `init.lua`: Main entry point that sets up leader keys, loads core modules, and configures basic editor settings
-- `lua/lazy-init.lua`: Lazy.nvim configuration and plugin specifications 
+- `lua/lazy-init.lua`: Lazy.nvim configuration and plugin specifications
 - `lua/options.lua`: Core Neovim options and settings
 - `lua/keymaps.lua`: Global keymaps and key bindings
 - `lua/globals.lua`: Global variables and configurations
@@ -30,7 +30,7 @@ Plugins are organized into logical categories under `lua/plugins/`:
 ### Key Components
 - **Plugin Manager**: Lazy.nvim with lazy loading and performance optimizations
 - **LSP Setup**: Uses mason.nvim for automatic LSP server installation and nvim-lspconfig for configuration
-- **Completion**: nvim-cmp with multiple sources
+- **Completion**: nvim-cmp with multiple sources (LSP, LuaSnip, path, codecompanion)
 - **File Navigation**: Neo-tree, telescope, oil.nvim for different file management needs
 - **Git Integration**: Gitsigns, lazygit for version control workflow
 
@@ -50,25 +50,73 @@ Plugins are organized into logical categories under `lua/plugins/`:
 
 ## Configuration Notes
 
+### Plugin Loading Strategy
+- Uses modular plugin imports via `{ import = 'plugins.category.name' }` pattern in lazy-init.lua
+- Each plugin category has its own directory with individual plugin files
+- Plugins define their own keymaps using the `keys` table in their specification
+- Some plugins are commented out but available (avante, codecompanion, fzf, smear-cursor)
+
 ### Indentation
 - Uses 2 spaces for indentation across all files
 - Configured in both init.lua and stylua.toml
 
-### Key Bindings
-- Leader key is set to Space
-- Custom keymaps include jj/jk for escape, Ctrl+S for save
-- LSP keybindings are configured in the lspconfig plugin file
+### Key Bindings Architecture
+- Leader key is set to Space (`<leader>`)
+- Global keymaps are defined in `lua/keymaps.lua`
+- Plugin-specific keymaps are defined within each plugin file using the `keys` table
+- Common patterns:
+  - `jj`/`jk` for escape variations
+  - `<C-s>` for save operations
+  - Window navigation with `<C-h/j/k/l>`
+  - Buffer navigation with `<S-h/l>` and `[b/]b`
+  - Tab operations with `te`, `<tab>`, `<s-tab>`
+
+### Key Keymap Categories
+- **Session Management**: `<leader>w*` (wr=search, ws=save, wa=toggle)
+- **Buffer Operations**: `<leader>b*` (bd=delete, bo=delete others, bD=delete+window)
+- **LSP Operations**: `<leader>c*` (ca=code action, cr=rename)
+- **Window Management**: `<leader>w*` (wd=close split)
+- **File Navigation**: `-` (oil parent dir), `<leader>-` (oil root)
 
 ### Colorscheme
 - Currently using solarized-osaka with transparency enabled
 - Multiple alternative colorschemes are available but commented out in `lua/plugins/ui/colorscheme.lua`
+- Alternatives include: cyberdream, github-theme, bluloco, catppuccin
 
 ### Tool Installation
 Mason automatically installs these tools:
-- Language servers: astro, css, docker, eslint, pyright, tailwindcss, vtsls
+- Language servers: astro-language-server, css-lsp, docker-compose-language-service, dockerfile-language-server, eslint-lsp, pyright, tailwindcss-language-server, vtsls
 - Formatters: prettier, prettierd, stylua, ruff
 - Debuggers: debugpy, js-debug-adapter
 - Linters: hadolint, ruff-lsp
+- Other tools: neocmakelsp
 
-## Security Note
-The init.lua file contains an exposed OpenAI API key on line 13-14. This should be moved to environment variables or a secure configuration method before committing any changes.
+### Performance Optimizations
+- Disabled default vim plugins: gzip, tarPlugin, zipPlugin, netrwPlugin, matchit, matchparen, shada, spellfile
+- Lazy loading enabled for most plugins with appropriate triggers
+- Oil.nvim explicitly set to `lazy = false` due to recommended practices
+
+### AI/Code Assistance Integration
+- Multiple AI coding assistants available: copilot, claude-code.nvim
+- Optional: codecompanion, avante (commented out)
+- Completion integration through nvim-cmp with codecompanion source
+- claude-code.nvim: Terminal-based Claude integration with split support
+
+## Development Workflow
+
+### Making Plugin Changes
+1. Add new plugins to appropriate category directory under `lua/plugins/`
+2. Import the plugin in `lua/lazy-init.lua` using the import pattern
+3. Define plugin-specific keymaps within the plugin file using `keys` table
+4. Use `:Lazy sync` to install/update plugins
+
+### Adding Language Support
+1. Create language-specific config in `lua/plugins/languages/`
+2. Add LSP server to ensure_installed list in `lua/plugins/coding/lspconfig.lua`
+3. Add formatters/linters to respective plugin configurations
+
+### Keymap Conventions
+- Use descriptive `desc` fields for all keymaps
+- Group related functionality under common leader key prefixes
+- Define plugin-specific keymaps within plugin files, not globally
+- Use `noremap = true, silent = true` for most mappings
