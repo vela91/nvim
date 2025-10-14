@@ -34,6 +34,8 @@ require('lazy').setup({
     { import = 'plugins.editor.snacks' },
     { import = 'plugins.editor.tmux' },
     { import = 'plugins.editor.which-key' },
+    { import = 'plugins.editor.terminal' },
+    { import = 'plugins.editor.which-key' },
     -- { import = 'plugins.editor.smear-cursor' },
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
@@ -57,6 +59,9 @@ require('lazy').setup({
     { import = 'plugins.editor.harpoon' },
   },
   defaults = {},
+  rocks = {
+    enabled = false,
+  },
   performance = {
     rtp = {
       disabled_plugins = {
