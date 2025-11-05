@@ -20,8 +20,9 @@ return {
   },
   opts = {
     sources = { 'filesystem', 'buffers', 'git_status' },
+
     window = {
-      position = 'right',
+      position = 'left',
       width = 30,
       mappings = {
         ['Y'] = 'none',

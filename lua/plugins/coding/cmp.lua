@@ -50,6 +50,17 @@ return {
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
 
+        formatting = {
+          format = function(entry, vim_item)
+            -- Add icon for Copilot
+            if entry.source.name == 'copilot' then
+              vim_item.kind = ' Copilot'
+              vim_item.kind_hl_group = 'CmpItemKindCopilot'
+            end
+            return vim_item
+          end,
+        },
+
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
@@ -108,10 +119,11 @@ return {
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'codecompanion' },
+          { name = 'copilot', group_index = 2 },
+          { name = 'nvim_lsp', group_index = 2 },
+          { name = 'luasnip', group_index = 2 },
+          { name = 'path', group_index = 2 },
+          { name = 'codecompanion', group_index = 2 },
         },
       }
     end,

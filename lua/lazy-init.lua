@@ -55,6 +55,7 @@ require('lazy').setup({
     { import = 'plugins.util.mini-hipatterns' },
     { import = 'plugins.coding.oil' },
     { import = 'plugins.coding.copilot' },
+    { import = 'plugins.coding.copilot-chat' },
     { import = 'plugins.util.session' },
     { import = 'plugins.editor.harpoon' },
   },

@@ -25,6 +25,9 @@ return {
       borderless_telescope = false,
     }
     vim.cmd [[colorscheme solarized-osaka]]
+
+    -- Copilot highlight
+    vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
   end,
 }
 

@@ -1,6 +1,27 @@
 local lsp = 'pyright'
 local ruff = 'ruff'
 
+local function organize_imports()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local method = vim.lsp.protocol.Methods.textDocument_codeAction
+  for _, client in ipairs(vim.lsp.get_clients { bufnr = bufnr }) do
+    if client.supports_method(method) then
+      return vim.lsp.buf.code_action {
+        apply = true,
+        context = {
+          only = { 'source.organizeImports' },
+          diagnostics = {},
+        },
+      }
+    end
+  end
+  vim.notify(
+    'Organize Imports code action not supported by active LSP',
+    vim.log.levels.INFO,
+    { title = 'LSP' }
+  )
+end
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -20,13 +41,7 @@ return {
           keys = {
             {
               '<leader>co',
-              vim.lsp.buf.code_action {
-                apply = true,
-                context = {
-                  only = { 'source.organizeImports' },
-                  diagnostics = {},
-                },
-              },
+              organize_imports,
               desc = 'Organize Imports',
             },
           },
@@ -35,13 +50,7 @@ return {
           keys = {
             {
               '<leader>co',
-              vim.lsp.buf.code_action {
-                apply = true,
-                context = {
-                  only = { 'source.organizeImports' },
-                  diagnostics = {},
-                },
-              },
+              organize_imports,
               desc = 'Organize Imports',
             },
           },

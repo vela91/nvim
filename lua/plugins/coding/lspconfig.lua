@@ -80,14 +80,31 @@ return {
             )
           end
 
+          local function buffer_supports(method)
+            for _, active_client in
+              ipairs(vim.lsp.get_clients { bufnr = event.buf })
+            do
+              if active_client.supports_method(method) then
+                return true
+              end
+            end
+            return false
+          end
+
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map(
-            '<leader>ca',
-            vim.lsp.buf.code_action,
-            'Code Action',
-            { 'n', 'x' }
-          )
+          map('<leader>ca', function()
+            local method = vim.lsp.protocol.Methods.textDocument_codeAction
+            if buffer_supports(method) then
+              vim.lsp.buf.code_action()
+            else
+              vim.notify(
+                'No LSP code actions available for this buffer',
+                vim.log.levels.INFO,
+                { title = 'LSP' }
+              )
+            end
+          end, 'Code Action', { 'n', 'x' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.

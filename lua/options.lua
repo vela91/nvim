@@ -58,13 +58,17 @@ vim.opt.cursorline = false
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Test: Cambio de prueba para verificar el diff view funcionando correctamente
+-- Enable smooth scrolling for better navigation in IDE
+vim.opt.smoothscroll = true
 
 -- Auto-reload files when changed outside of Neovim
 vim.opt.autoread = true
 
 -- Trigger autoread when cursor stops moving or when switching buffers
-vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
-  pattern = '*',
-  command = 'checktime',
-})
+vim.api.nvim_create_autocmd(
+  { 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' },
+  {
+    pattern = '*',
+    command = 'checktime',
+  }
+)
