@@ -10,8 +10,8 @@ return {
       debug = false,
       window = {
         layout = 'float', -- 'vertical', 'horizontal', 'float'
-        width = 0.7, -- fractional width of parent
-        height = 0.2, -- fractional height of parent
+        width = 0.8, -- fractional width of parent
+        height = 0.6, -- fractional height of parent
       },
       mappings = {
         complete = {
@@ -130,6 +130,19 @@ return {
       },
       -- Custom prompts
       {
+        '<leader>ccE',
+        function()
+          local input = vim.fn.input 'Instrucciones de edición: '
+          if input ~= '' then
+            require('CopilotChat').ask(input, {
+              selection = require('CopilotChat.select').visual,
+            })
+          end
+        end,
+        desc = 'CopilotChat - Edit with instructions',
+        mode = { 'n', 'v' },
+      },
+      {
         '<leader>ccd',
         '<cmd>CopilotChatDocs<cr>',
         desc = 'CopilotChat - Write documentation',
@@ -176,10 +189,13 @@ return {
           prompt = '/COPILOT_GENERATE Agrega documentación al código seleccionado.',
         },
         Prompt = {
-          prompt = '/COPILOT_GENERATE Ayúdame a reformular el prompt para que sea más claro y directo. Podemos iterar varias veces hasta perfeccionarlo.',
+          prompt = 'Ayúdame a reformular el siguiente prompt para que sea más claro, directo y efectivo. Proporciona la versión mejorada del prompt.',
         },
         Tests = {
           prompt = '/COPILOT_GENERATE Genera tests para mi código.',
+        },
+        EditWithInstructions = {
+          prompt = '/COPILOT_GENERATE Modifica el código según estas instrucciones específicas. Proporciona solo el código modificado sin explicaciones adicionales.',
         },
         FixDiagnostic = {
           prompt = 'Por favor ayuda con el siguiente problema de diagnóstico en el archivo:',

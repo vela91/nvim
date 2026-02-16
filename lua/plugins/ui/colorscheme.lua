@@ -28,6 +28,36 @@ return {
 
     -- Copilot highlight
     vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
+
+    -- Diff colors: right/proposed (green tones)
+    vim.api.nvim_set_hl(0, 'DiffAdd', { bg = '#1a3a2a' })
+    vim.api.nvim_set_hl(0, 'DiffChange', { bg = '#1a2a3a' })
+    vim.api.nvim_set_hl(0, 'DiffText', { bg = '#2a4a3a', bold = true })
+    vim.api.nvim_set_hl(0, 'DiffDelete', { bg = '#2a1a1a' })
+    -- Diff colors: left/original (red tones) - used via winhighlight
+    vim.api.nvim_set_hl(0, 'DiffAddOld', { bg = '#3a1a1a' })
+    vim.api.nvim_set_hl(0, 'DiffChangeOld', { bg = '#2a1a2a' })
+    vim.api.nvim_set_hl(0, 'DiffTextOld', { bg = '#4a2222', bold = true })
+    vim.api.nvim_set_hl(0, 'DiffDeleteOld', { bg = '#2a1a1a' })
+
+    -- Apply red highlights to left diff window (original)
+    vim.api.nvim_create_autocmd('BufWinEnter', {
+      callback = function()
+        vim.schedule(function()
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            if vim.wo[win].diff then
+              local buf = vim.api.nvim_win_get_buf(win)
+              local name = vim.api.nvim_buf_get_name(buf)
+              if not name:match('%(proposed%)') then
+                vim.wo[win].winhighlight = 'DiffAdd:DiffAddOld,DiffChange:DiffChangeOld,DiffText:DiffTextOld,DiffDelete:DiffDeleteOld'
+              else
+                vim.wo[win].winhighlight = ''
+              end
+            end
+          end
+        end)
+      end,
+    })
   end,
 }
 
