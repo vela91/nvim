@@ -30,6 +30,7 @@ require('lazy').setup({
     { import = 'plugins.editor.leap' },
     { import = 'plugins.editor.mini' },
     { import = 'plugins.editor.neo-tree' },
+    { import = 'plugins.editor.obsidian' },
     { import = 'plugins.editor.overseer' },
     { import = 'plugins.editor.snacks' },
     { import = 'plugins.editor.tmux' },

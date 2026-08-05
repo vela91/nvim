@@ -1,26 +1,28 @@
 return {
   'coder/claudecode.nvim',
   dependencies = { 'folke/snacks.nvim' },
+  cmd = {
+    'ClaudeCode',
+    'ClaudeCodeFocus',
+    'ClaudeCodeSelectModel',
+    'ClaudeCodeAdd',
+    'ClaudeCodeSend',
+    'ClaudeCodeTreeAdd',
+    'ClaudeCodeStatus',
+    'ClaudeCodeStart',
+    'ClaudeCodeStop',
+    'ClaudeCodeOpen',
+    'ClaudeCodeClose',
+    'ClaudeCodeDiffAccept',
+    'ClaudeCodeDiffDeny',
+    'ClaudeCodeCloseAllDiffs',
+  },
   opts = {
     terminal = {
+      split_side = 'right',
+      split_width_percentage = 0.4,
       provider = 'snacks',
-      snacks_win_opts = {
-        position = 'float',
-        width = 0.85,
-        height = 0.85,
-        border = 'rounded',
-        backdrop = 60,
-        keys = {
-          toggle_claude = {
-            '<A-c>',
-            function()
-              vim.cmd('ClaudeCode')
-            end,
-            mode = 't',
-            desc = 'Toggle Claude',
-          },
-        },
-      },
+      auto_close = true,
     },
     diff_opts = {
       layout = 'vertical',
@@ -35,23 +37,10 @@ return {
     { '<A-c>', '<cmd>ClaudeCode<cr>', mode = { 'n', 't' }, desc = 'Toggle Claude' },
     { '<leader>af', '<cmd>ClaudeCodeFocus<cr>', desc = 'Focus Claude' },
     { '<leader>ar', '<cmd>ClaudeCode --resume<cr>', desc = 'Resume Claude' },
-    {
-      '<leader>aC',
-      '<cmd>ClaudeCode --continue<cr>',
-      desc = 'Continue Claude',
-    },
-    {
-      '<leader>am',
-      '<cmd>ClaudeCodeSelectModel<cr>',
-      desc = 'Select Claude model',
-    },
+    { '<leader>aC', '<cmd>ClaudeCode --continue<cr>', desc = 'Continue Claude' },
+    { '<leader>am', '<cmd>ClaudeCodeSelectModel<cr>', desc = 'Select Claude model' },
     { '<leader>ab', '<cmd>ClaudeCodeAdd %<cr>', desc = 'Add current buffer' },
-    {
-      '<leader>as',
-      '<cmd>ClaudeCodeSend<cr>',
-      mode = 'v',
-      desc = 'Send to Claude',
-    },
+    { '<leader>as', '<cmd>ClaudeCodeSend<cr>', mode = 'v', desc = 'Send to Claude' },
     {
       '<leader>as',
       '<cmd>ClaudeCodeTreeAdd<cr>',

@@ -86,6 +86,6 @@ keymap.set('v', '>', '>gv')
 -- oil pluging
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
--- ClaudeCode Diff View
+-- Git Diff View
 vim.keymap.set('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'Git Diff View' })
 vim.keymap.set('n', '<leader>gD', '<cmd>diffoff!<cr>', { desc = 'Close Diff View' })

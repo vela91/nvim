@@ -72,3 +72,19 @@ vim.api.nvim_create_autocmd(
     command = 'checktime',
   }
 )
+
+-- Diagnostics: muestra el mensaje a la derecha de la línea con error
+vim.diagnostic.config {
+  virtual_text = {
+    prefix = '●',
+    spacing = 2,
+    source = 'if_many',
+  },
+  signs = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    source = true,
+  },
+}

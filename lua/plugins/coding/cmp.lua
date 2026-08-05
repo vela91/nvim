@@ -50,17 +50,6 @@ return {
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
 
-        formatting = {
-          format = function(entry, vim_item)
-            -- Add icon for Copilot
-            if entry.source.name == 'copilot' then
-              vim_item.kind = ' Copilot'
-              vim_item.kind_hl_group = 'CmpItemKindCopilot'
-            end
-            return vim_item
-          end,
-        },
-
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
@@ -75,10 +64,16 @@ return {
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
-          -- Accept ([y]es) the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
-          ['<CR>'] = cmp.mapping.confirm { select = true },
+          -- Enter confirma solo si hay un item seleccionado explícitamente
+          -- (con C-n/C-p). Si no, Enter actúa como Enter normal (nueva línea).
+          -- Esto evita que Copilot se inserte automáticamente al presionar Enter.
+          ['<CR>'] = cmp.mapping(function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm { select = false }
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
@@ -119,7 +114,6 @@ return {
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
-          { name = 'copilot', group_index = 2 },
           { name = 'nvim_lsp', group_index = 2 },
           { name = 'luasnip', group_index = 2 },
           { name = 'path', group_index = 2 },

@@ -93,6 +93,11 @@ return {
           icon = { icon = '', color = 'red' },
         },
         {
+          '<leader>z',
+          group = 'Obsidian',
+          icon = { icon = '󰋥', color = 'purple' },
+        },
+        {
           '<leader>s',
           group = 'Search',
           icon = { icon = '', color = 'yellow' },
